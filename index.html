@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeProject</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header, .footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 1em;
+        }
+        .content {
+            padding: 1em;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: black;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .dashboard button {
+            margin: 0 10px;
+        }
+        footer a {
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CreativeProject</h1>
+    </div>
+    <div class="content">
+        <div class="nav">
+            <a href="eExam.html">e-Exam</a>
+            <a href="openForum.html">Openforum</a>
+            <a href="eRepository.html">e-Repository</a>
+            <a href="myWall.html">MyWall</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="dashboard">
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button onclick="window.location.href='registration.html'">Register</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Footer links: <a href="#">Link 1</a> | <a href="#">Link 2</a> | <a href="#">Link 3</a></p>
+    </div>
+</body>
+</html>
