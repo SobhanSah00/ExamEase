@@ -1,85 +1,62 @@
-body {
-    font-family: Arial, sans-serif;
+/* Basic styling */
+body, html {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.header, .footer {
-    background-color: #f1f1f1;
+/* Home page content styling */
+.home-content {
     text-align: center;
-    padding: 1em;
+    padding: 50px;
 }
 
-.content {
-    padding: 1em;
+/* Blur effect when login is displayed */
+.home-content.blurred {
+    filter: blur(8px);
+    pointer-events: none;
 }
 
-.nav {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.nav a {
-    text-decoration: none;
-    color: black;
-}
-
-.search-bar {
-    margin-bottom: 20px;
-}
-
-.dashboard {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.dashboard button {
-    margin: 0 10px;
-}
-
-footer a {
-    color: grey;
-}
-
-.form-container {
-    width: 50%;
-    margin: 0 auto;
+/* Login container styling */
+.container {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 400px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.form-group {
-    margin-bottom: 15px;
+/* Overlay and form styling */
+.overlay, .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
+.sign-in, .sign-up {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+.sign-in h1, .sign-up h1 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
 }
 
-.form-group input[type="radio"] {
-    width: auto;
+.sign-in p, .sign-up p {
+    font-size: 14px;
 }
 
-.form-group input[type="file"] {
-    width: auto;
-}
-
-.form-group button {
-    width: 100%;
-    padding: 10px;
+.switch-button {
+    margin-top: 10px;
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -87,6 +64,19 @@ footer a {
     cursor: pointer;
 }
 
-.form-group button:hover {
-    background-color: #45a049;
+.control-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
 }
