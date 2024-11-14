@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Forum</title>
+  <link rel="stylesheet" href="openForum.css">
+</head>
+<body>
+  <div class="container">
+    <div class="post-form">
+      <textarea placeholder="What's on your mind?"></textarea>
+      <button onclick="createPost()">Post</button>
+    </div>
+    <div class="posts" id="posts-container">
+      <!-- Sample post -->
+      <div class="post">
+        <div class="post-header">
+          <span class="post-author">John Doe</span>
+          <div class="post-actions">
+            <button onclick="editPost(this)">Edit</button>
+            <button onclick="deletePost(this)">Delete</button>
+          </div>
+        </div>
+        <div class="post-content">
+          This is a sample post. You can edit or delete your own posts and react to others' posts!
+        </div>
+        <div class="post-reactions">
+          <button class="reaction-btn" onclick="react(this, 'like')">
+            👍 <span class="reaction-count">0</span>
+          </button>
+          <button class="reaction-btn" onclick="react(this, 'dislike')">
+            👎 <span class="reaction-count">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="openForum.js"></script>
+</body>
+</html>

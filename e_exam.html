@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Exam Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile {
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .subjects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .subject {
+            width: 48%;
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .subject h3 {
+            margin-top: 0;
+        }
+
+        .mcq-page {
+            display: none;
+        }
+
+        .mcq-page h2 {
+            margin-top: 0;
+        }
+
+        .mcq-question {
+            margin-bottom: 20px;
+        }
+
+        .mcq-options {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mcq-options li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">E-Exam</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Profile section -->
+        <div class="profile">
+            <h2>User Profile</h2>
+            <p>Name: John Doe</p>
+            <p>Email: john.doe@example.com</p>
+            <button onclick="verifyUser()">Verify</button>
+        </div>
+
+        <!-- Subjects section -->
+        <div class="subjects">
+            <div class="subject" onclick="selectSubject('C Programming')">
+                <h3>C Programming</h3>
+                <p>Take the C Programming exam.</p>
+            </div>
+            <div class="subject" onclick="selectSubject('Data Structures and Algorithms')">
+                <h3>Data Structures and Algorithms</h3>
+                <p>Take the Data Structures and Algorithms exam.</p>
+            </div>
+            <div class="subject" onclick="selectSubject('Computer Networks')">
+                <h3>Computer Networks</h3>
+                <p>Take the Computer Networks exam.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mcq-page" id="mcq-page">
+        <div class="container">
+            <h2 id="mcq-subject-title"></h2>
+            <div class="mcq-question">
+                <h3>Question 1</h3>
+                <p>What is the output of the following code?</p>
+                <pre><code>
+                    int x = 5;
+                    int y = 10;
+                    printf("%d", x + y);
+                </code></pre>
+                <ul class="mcq-options">
+                    <li><input type="radio" name="q1" value="a">15</li>
+                    <li><input type="radio" name="q1" value="b">50</li>
+                    <li><input type="radio" name="q1" value="c">Compilation error</li>
+                </ul>
+            </div>
+            <button onclick="submitExam()">Submit Exam</button>
+        </div>
+    </div>
+
+    <script>
+        function verifyUser() {
+            alert("User verified!");
+        }
+
+        function selectSubject(subject) {
+            document.getElementById("mcq-subject-title").textContent = subject;
+            document.querySelector(".mcq-page").style.display = "block";
+        }
+
+        function submitExam() {
+            alert("Exam submitted!");
+        }
+    </script>
+</body>
+</html>

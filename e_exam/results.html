@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Exam Results</h1>
+    <p>Your score: <span id="score"></span></p>
+    <button onclick="generateCertificate()">Download Certificate</button>
+
+    <script>
+        document.getElementById("score").innerText = localStorage.getItem("score");
+
+        function generateCertificate() {
+            const subject = localStorage.getItem("selectedSubject");
+            const score = localStorage.getItem("score");
+
+            const certificateText = `Certificate of Completion\n\nThis certifies that the user has completed the ${subject} exam with a score of ${score}.`;
+
+            const blob = new Blob([certificateText], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "Certificate.txt";
+            link.click();
+        }
+    </script>
+</body>
+</html>
