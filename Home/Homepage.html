@@ -10,9 +10,16 @@
         background-color: rgba(255, 255, 255, 0.7); /* Adjust transparency */
         transition: background-color 0.3s ease;
       }
+      .hover-link:hover {
+        color: #6366f1;
+        text-decoration: underline;
+      }
+      .footer-link:hover {
+        color: #4f46e5;
+      }
     </style>
   </head>
-  <body class="mx-[10vw]">
+  <body class="bg-gray-50">
     <div class="bg-white">
       <header class="sticky top-0 z-50" id="navbar">
         <nav
@@ -45,18 +52,14 @@
             </button>
           </div>
           <div class="hidden lg:flex lg:gap-x-12">
-            <a href="#" class="text-sm font-semibold text-gray-900">E-EXAM</a>
-            <a
-              href="../openForum/openForum.html"
-              class="text-sm font-semibold text-gray-900"
-              >OPENFORUM</a
-            >
+            <a href="../e_exam//examSelection.html" class="text-sm font-semibold text-gray-900">E-EXAM</a>
+            <a href="../openForum/openForum.html" class="text-sm font-semibold text-gray-900">OPENFORUM</a>
             <a href="#" class="text-sm font-semibold text-gray-900">E-REPO</a>
             <a href="#" class="text-sm font-semibold text-gray-900">MY-WALL</a>
           </div>
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">
             <a
-              href="../login/login.html"
+              href="../Register/register.html"
               class="text-sm font-semibold text-gray-900"
             >
               Log in <span aria-hidden="true">&rarr;</span>
@@ -66,26 +69,35 @@
       </header>
 
       <div class="relative isolate px-6 pt-14 lg:px-8">
+        <!-- Left side gradient -->
         <div
-          class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          class="absolute inset-x-0 -top-20 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-60"
           aria-hidden="true"
         >
           <div
-            class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            class="relative left-[calc(50%-14rem)] aspect-[1155/678] w-[42rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-50 sm:left-[calc(50%-35rem)] sm:w-[80rem]"
             style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"
           ></div>
         </div>
+        <!-- Right side gradient -->
+        <div
+          class="absolute inset-x-0 -bottom-20 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-60"
+          aria-hidden="true"
+        >
+          <div
+            class="relative left-[calc(50%+14rem)] aspect-[1155/678] w-[42rem] translate-x-1/2 rotate-[-30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-50 sm:left-[calc(50%+35rem)] sm:w-[80rem]"
+            style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"
+          ></div>
+        </div>
+      
+        <!-- Content Section -->
         <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div class="text-center">
-            <h1
-              class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl"
-            >
+            <h1 class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
               Prep Smart. Stress Less. Score Higher.
             </h1>
             <p class="mt-8 text-lg font-medium text-gray-500 sm:text-xl">
-              Learn swiftly, achieve boldly, aim high without hesitation. For
-              every challenge, rise with precision. Mastery awaits where focus
-              meets ambition.
+              Learn swiftly, achieve boldly, aim high without hesitation. For every challenge, rise with precision. Mastery awaits where focus meets ambition.
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
               <a
@@ -101,72 +113,69 @@
           </div>
         </div>
       </div>
+      
+      
 
-      <footer class="bg-white py-10">
+      <footer class="bg-white py-12 border-t border-gray-200">
         <div class="container mx-auto px-6 lg:px-8">
-          <div
-            class="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between"
-          >
+          <div class="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between">
             <div class="flex flex-col items-center lg:items-start mb-8 lg:mb-0">
-              <div class="mb-2">ExamEase</div>
+              <div class="text-xl font-bold text-gray-800 mb-2">ExamEase</div>
               <p class="text-center lg:text-left text-gray-600">
-                Making the world a better place through constructing elegant
-                hierarchies.
+                Empowering students to succeed through tailored learning and focused preparation. Study smarter, not harder.
               </p>
             </div>
-
-            <div
-              class="grid grid-cols-2 gap-8 lg:grid-cols-4 mt-8 text-gray-700"
-            >
+      
+            <div class="grid grid-cols-2 gap-8 lg:grid-cols-4 mt-8 text-gray-700">
               <div>
-                <h3 class="font-semibold mb-2">Solutions</h3>
+                <h3 class="font-semibold text-gray-800 mb-2">Resources</h3>
                 <ul class="space-y-1">
-                  <li><a href="#" class="hover:underline">Marketing</a></li>
-                  <li><a href="#" class="hover:underline">Analytics</a></li>
-                  <li><a href="#" class="hover:underline">Automation</a></li>
-                  <li><a href="#" class="hover:underline">Commerce</a></li>
-                  <li><a href="#" class="hover:underline">Insights</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Exam Tips</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Study Guides</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Practice Tests</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Time Management</a></li>
                 </ul>
               </div>
-
+      
               <div>
-                <h3 class="font-semibold mb-2">Support</h3>
+                <h3 class="font-semibold text-gray-800 mb-2">Support</h3>
                 <ul class="space-y-1">
-                  <li><a href="#" class="hover:underline">Submit ticket</a></li>
-                  <li><a href="#" class="hover:underline">Documentation</a></li>
-                  <li><a href="#" class="hover:underline">Guides</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Contact Us</a></li>
+                  <li><a href="#" class="hover:underline footer-link">FAQs</a></li>
+                  <li><a href="#" class="hover:underline footer-link">User Guide</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Technical Support</a></li>
                 </ul>
               </div>
-
+      
               <div>
-                <h3 class="font-semibold mb-2">Company</h3>
+                <h3 class="font-semibold text-gray-800 mb-2">Company</h3>
                 <ul class="space-y-1">
-                  <li><a href="#" class="hover:underline">About</a></li>
-                  <li><a href="#" class="hover:underline">Blog</a></li>
-                  <li><a href="#" class="hover:underline">Jobs</a></li>
-                  <li><a href="#" class="hover:underline">Press</a></li>
+                  <li><a href="#" class="hover:underline footer-link">About ExamEase</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Our Mission</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Blog</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Careers</a></li>
                 </ul>
               </div>
-
+      
               <div>
-                <h3 class="font-semibold mb-2">Legal</h3>
+                <h3 class="font-semibold text-gray-800 mb-2">Legal</h3>
                 <ul class="space-y-1">
-                  <li>
-                    <a href="#" class="hover:underline">Terms of service</a>
-                  </li>
-                  <li>
-                    <a href="#" class="hover:underline">Privacy policy</a>
-                  </li>
-                  <li><a href="#" class="hover:underline">License</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Terms of Service</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Privacy Policy</a></li>
+                  <li><a href="#" class="hover:underline footer-link">Accessibility</a></li>
                 </ul>
               </div>
             </div>
           </div>
+      
+          <div class="mt-10 text-center text-gray-600 text-sm">
+            &copy; 2023 ExamEase. All rights reserved.
+          </div>
         </div>
       </footer>
+      
 
       <script>
-        // Add blur effect on scroll
         window.addEventListener("scroll", function () {
           const navbar = document.getElementById("navbar");
           if (window.scrollY > 0) {
