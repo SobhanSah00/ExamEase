@@ -1,210 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background: linear-gradient(135deg, #ece9e6, #ffffff);
-            font-family: Arial, sans-serif;
-        }
+    <title>Profile Page</title>
 
-        .profile-container {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 2rem auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="style.css">
 
-        .profile-header {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
-            text-align: center;
-        }
-
-        .profile-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #d1d5db;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #4f46e5;
-            margin-bottom: 1rem;
-        }
-
-        .profile-field {
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        .profile-field label {
-            font-weight: 500;
-            color: #333;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-field input,
-        .profile-field select,
-        .profile-field textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            background-color: #f8fafc;
-            font-size: 1rem;
-            pointer-events: none;
-        }
-
-        .profile-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .form-button {
-            background-color: #4f46e5;
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .form-button:hover {
-            background-color: #4338ca;
-        }
-
-        .form-button.secondary {
-            background-color: #d1d5db;
-            color: #333;
-        }
-
-        .form-button.secondary:hover {
-            background-color: #a1a1a1;
-        }
-    </style>
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
-
 <body>
-    <div class="profile-container">
-        <div class="profile-header">User Profile</div>
-        
-        <!-- Profile Picture Placeholder -->
-        <div class="profile-picture">JD</div>
+    <!-- Navbar top -->
+    <div class="navbar-top">
+        <div class="title">
+            <h1>Profile</h1>
+        </div>
 
-        <form id="profile-form">
-            <!-- Name Field -->
-            <div class="profile-field">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="John Doe" readonly>
-            </div>
-
-            <!-- ID Field -->
-            <div class="profile-field">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id" value="12345" readonly>
-            </div>
-
-            <!-- Email Field -->
-            <div class="profile-field">
-                <label for="email">E-Mail ID</label>
-                <input type="email" id="email" name="email" value="john.doe@example.com" readonly>
-            </div>
-
-            <!-- Age Field -->
-            <div class="profile-field">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" value="22" readonly>
-            </div>
-
-            <!-- Gender Field -->
-            <div class="profile-field">
-                <label for="gender">Gender</label>
-                <input type="text" id="gender" name="gender" value="Male" readonly>
-            </div>
-
-            <!-- College Address Field -->
-            <div class="profile-field">
-                <label for="address">College Address</label>
-                <textarea id="address" name="address" rows="3" readonly>123 Main Street, College City</textarea>
-            </div>
-
-            <!-- Branch Field -->
-            <div class="profile-field">
-                <label for="branch">Branch</label>
-                <input type="text" id="branch" name="branch" value="Computer Science Engineering" readonly>
-            </div>
-
-            <!-- Skills Field -->
-            <div class="profile-field">
-                <label for="skills">Skills</label>
-                <input type="text" id="skills" name="skills" value="Java, Python" readonly>
-            </div>
-
-            <!-- Buttons: Edit and Save -->
-            <div class="profile-buttons">
-                <button type="button" class="form-button" id="edit-btn" onclick="toggleEditMode()">Edit</button>
-                <button type="button" class="form-button secondary" id="save-btn" onclick="saveChanges()" style="display: none;">Save</button>
-            </div>
-        </form>
+        <!-- Navbar -->
+        <ul>
+            <li>
+                <a href="#message">
+                    <span class="icon-count">29</span>
+                    <i class="fa fa-envelope fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#notification">
+                    <span class="icon-count">59</span>
+                    <i class="fa fa-bell fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#sign-out">
+                    <i class="fa fa-sign-out-alt fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+        <!-- End -->
     </div>
+    <!-- End -->
 
-    <script>
-        function toggleEditMode() {
-            const fields = document.querySelectorAll('#profile-form input, #profile-form textarea');
-            const editBtn = document.getElementById('edit-btn');
-            const saveBtn = document.getElementById('save-btn');
+    <!-- Sidenav -->
+    <div class="sidenav">
+        <div class="profile">
+            <img src="https://imdezcode.files.wordpress.com/2020/02/imdezcode-logo.png" alt="" width="100" height="100">
 
-            // Toggle readonly mode for all fields
-            fields.forEach(field => {
-                field.readOnly = !field.readOnly;
-                if (field.tagName === 'TEXTAREA') {
-                    field.disabled = !field.disabled;
-                }
-            });
+            <div class="name">
+                ImDezCode
+            </div>
+            <div class="job">
+                Web Developer
+            </div>
+        </div>
 
-            // Toggle buttons visibility
-            editBtn.style.display = editBtn.style.display === 'none' ? 'block' : 'none';
-            saveBtn.style.display = saveBtn.style.display === 'none' ? 'block' : 'none';
-        }
+        <div class="sidenav-url">
+            <div class="url">
+                <a href="#profile" class="active">Profile</a>
+                <hr align="center">
+            </div>
+            <div class="url">
+                <a href="#settings">Settings</a>
+                <hr align="center">
+            </div>
+        </div>
+    </div>
+    <!-- End -->
 
-        function saveChanges() {
-            const fields = document.querySelectorAll('#profile-form input, #profile-form textarea');
-            const editBtn = document.getElementById('edit-btn');
-            const saveBtn = document.getElementById('save-btn');
+    <!-- Main -->
+    <div class="main">
+        <h2>IDENTITY</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit"></i>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td>ImDezCode</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td>imdezcode@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>:</td>
+                            <td>Bali, Indonesia</td>
+                        </tr>
+                        <tr>
+                            <td>Hobbies</td>
+                            <td>:</td>
+                            <td>Diving, Reading Book</td>
+                        </tr>
+                        <tr>
+                            <td>Job</td>
+                            <td>:</td>
+                            <td>Web Developer</td>
+                        </tr>
+                        <tr>
+                            <td>Skill</td>
+                            <td>:</td>
+                            <td>PHP, HTML, CSS, Java</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-            // Toggle readonly mode for all fields
-            fields.forEach(field => {
-                field.readOnly = true;
-                if (field.tagName === 'TEXTAREA') {
-                    field.disabled = true;
-                }
-            });
-
-            // Toggle buttons visibility
-            editBtn.style.display = 'block';
-            saveBtn.style.display = 'none';
-
-            alert("Profile saved successfully!");
-        }
-    </script>
+        <h2>SOCIAL MEDIA</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit"></i>
+                <div class="social-media">
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
 </body>
-
 </html>
