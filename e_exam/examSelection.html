@@ -1,31 +1,342 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Exam</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Online Examination Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .exam-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .timer {
+            background: #e74c3c;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .student-info {
+            font-size: 14px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+        }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .question-number {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .question-number:hover {
+            background: #e9ecef;
+        }
+
+        .question-number.attempted {
+            background: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .question-number.marked {
+            background: #f1c40f;
+            color: white;
+            border-color: #f39c12;
+        }
+
+        .question-number.current {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 250px;
+            margin-top: 60px;
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .question-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            background: #f8f9fa;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 15px;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f1c40f;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .legend {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Select an Exam Subject</h1>
-    <form id="examForm">
-        <label>
-            <input type="radio" name="subject" value="C Programming" required> C Programming
-        </label><br>
-        <label>
-            <input type="radio" name="subject" value="DSA"> Data Structures and Algorithms
-        </label><br>
-        <label>
-            <input type="radio" name="subject" value="Computer Networks"> Computer Networks
-        </label><br>
-        <button type="button" onclick="startExam()">Start Exam</button>
-    </form>
+    <div class="header">
+        <div class="student-info">
+            <div>Student: John Doe</div>
+            <div>Subject: Mathematics</div>
+        </div>
+        <div class="timer">Time Remaining: 02:45:30</div>
+    </div>
+
+    <div class="exam-container">
+        <div class="sidebar">
+            <h3>Question Navigation</h3>
+            <div class="question-grid">
+                <div class="question-number current">1</div>
+                <div class="question-number attempted">2</div>
+                <div class="question-number marked">3</div>
+                <div class="question-number">4</div>
+                <div class="question-number">5</div>
+                <div class="question-number attempted">6</div>
+                <div class="question-number">7</div>
+                <div class="question-number">8</div>
+                <div class="question-number">9</div>
+                <div class="question-number">10</div>
+                <div class="question-number">11</div>
+                <div class="question-number">12</div>
+                <div class="question-number">13</div>
+                <div class="question-number">14</div>
+                <div class="question-number">15</div>
+            </div>
+
+            <div class="legend">
+                <h4>Legend</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    Current Question
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2ecc71;"></div>
+                    Attempted
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f1c40f;"></div>
+                    Marked for Review
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f8f9fa;"></div>
+                    Not Visited
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="question-container">
+                <div class="question-header">
+                    <h2>Question 1</h2>
+                    <span>Marks: 4</span>
+                </div>
+
+                <div class="question-text">
+                    What is the value of π (pi) to two decimal places?
+                </div>
+
+                <div class="options-list">
+                    <label class="option">
+                        <input type="radio" name="q1" value="a">
+                        3.14
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="b">
+                        3.15
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="c">
+                        3.16
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="d">
+                        3.13
+                    </label>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary">Previous</button>
+                    <button class="btn btn-warning">Mark for Review</button>
+                    <button class="btn btn-primary">Save & Next</button>
+                    <button class="btn btn-danger">Submit Exam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function startExam() {
-            const subject = document.querySelector('input[name="subject"]:checked').value;
-            localStorage.setItem("selectedSubject", subject);
-            window.location.href = 'exam.html';
+        // Timer functionality
+        function updateTimer() {
+            const timerElement = document.querySelector('.timer');
+            let timeLeft = 10000; // Time in seconds (example: 2 hours 45 minutes 30 seconds)
+
+            setInterval(() => {
+                timeLeft--;
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+
+                timerElement.textContent = `Time Remaining: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    alert('Time is up! Your exam will be submitted automatically.');
+                    // Add submission logic here
+                }
+            }, 1000);
         }
+
+        updateTimer();
+
+        // Question navigation functionality
+        document.querySelectorAll('.question-number').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.question-number').forEach(b => b.classList.remove('current'));
+                btn.classList.add('current');
+                // Add navigation logic here
+            });
+        });
     </script>
 </body>
 </html>
