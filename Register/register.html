@@ -1,238 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .form-container {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            margin: 2rem auto;
-        }
+      .form-container {
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 2rem auto;
+      }
 
-        .form-header {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
+      .form-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
 
-        .form-button {
-            background-color: #4f46e5;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+      .form-button {
+        background-color: #4f46e5;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-        .form-button:hover {
-            background-color: #4338ca;
-        }
+      .form-button:hover {
+        background-color: #4338ca;
+      }
 
-        .form-field {
-            margin-bottom: 1.25rem;
-        }
+      .form-field {
+        margin-bottom: 1.25rem;
+      }
 
-        .form-field label {
-            font-weight: 500;
-            color: #333;
-        }
+      .form-field label {
+        font-weight: 500;
+        color: #333;
+      }
 
-        .form-field input,
-        .form-field select,
-        .form-field textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            background-color: #f9fafb;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
+      .form-field input,
+      .form-field select,
+      .form-field textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid #d1d5db;
+        background-color: #f9fafb;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
 
-        .form-field input[type="radio"] {
-            width: auto;
-            margin-right: 0.5rem;
-        }
+      .form-field input[type="radio"],
+      .form-field input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+      }
 
-        .form-field input[type="checkbox"] {
-            width: auto;
-            margin-right: 0.5rem;
-        }
+      .form-field .skills-label {
+        margin-top: 0.5rem;
+      }
 
-        .form-field .skills-label {
-            margin-top: 0.5rem;
-        }
+      .form-field .file-label {
+        display: block;
+        font-weight: 500;
+        color: #333;
+      }
 
-        .form-field .file-label {
-            display: block;
-            font-weight: 500;
-            color: #333;
-        }
+      .form-field input[type="file"] {
+        margin-top: 0.5rem;
+      }
 
-        .form-field input[type="file"] {
-            margin-top: 0.5rem;
-        }
+      .form-toggle {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
 
-        .form-toggle {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
+      .form-toggle a {
+        color: #4f46e5;
+        cursor: pointer;
+      }
 
-        .form-toggle a {
-            color: #4f46e5;
-            cursor: pointer;
-        }
+      .hidden {
+        display: none;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .error {
+        color: red;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-100">
+  <body class="bg-gray-100">
     <div class="form-container">
-        <!-- Registration Form -->
-        <div id="registration-form">
-            <div class="form-header">
-                <h2>Registration Form</h2>
-            </div>
-            <form action="#" method="POST">
-                <!-- Name Field -->
-                <div class="form-field">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                </div>
-                <!-- ID Field -->
-                <div class="form-field">
-                    <label for="id">ID</label>
-                    <input type="text" id="id" name="id" required placeholder="Enter your ID">
-                </div>
-                <!-- Password Field -->
-                <div class="form-field">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Enter your password">
-                </div>
-                <!-- Email Field -->
-                <div class="form-field">
-                    <label for="email">E-Mail ID</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email">
-                </div>
-                <!-- Age Field -->
-                <div class="form-field">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" name="age" required placeholder="Enter your age">
-                </div>
-                <!-- Gender Field -->
-                <div class="form-field">
-                    <label>Gender</label>
-                    <div class="flex items-center">
-                        <input type="radio" id="male" name="gender" value="male" class="mr-2" required>
-                        <label for="male" class="mr-4">Male</label>
-                        <input type="radio" id="female" name="gender" value="female" class="mr-2">
-                        <label for="female">Female</label>
-                    </div>
-                </div>
-                <!-- College Address Field -->
-                <div class="form-field">
-                    <label for="address">College Address</label>
-                    <textarea id="address" name="address" rows="4" required placeholder="Enter your college address"></textarea>
-                </div>
-                <!-- Branch Field -->
-                <div class="form-field">
-                    <label for="branch">Branch</label>
-                    <select id="branch" name="branch" required>
-                        <option value="" disabled selected>Select your branch</option>
-                        <option value="CSE">Computer Science Engineering</option>
-                        <option value="IT">Information Technology</option>
-                        <option value="ECE">Electronics and Communication Engineering</option>
-                        <option value="ME">Mechanical Engineering</option>
-                    </select>
-                </div>
-                <!-- Technical Skills Field -->
-                <div class="form-field">
-                    <label class="skills-label">Technical Skills</label>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="c" name="skills" value="C" class="mr-2">
-                        <label for="c" class="mr-4">C</label>
-
-                        <input type="checkbox" id="java" name="skills" value="Java" class="mr-2">
-                        <label for="java" class="mr-4">Java</label>
-
-                        <input type="checkbox" id="python" name="skills" value="Python" class="mr-2">
-                        <label for="python" class="mr-4">Python</label>
-
-                        <input type="checkbox" id="jsp" name="skills" value="JSP" class="mr-2">
-                        <label for="jsp">JSP</label>
-                    </div>
-                </div>
-                <!-- Resume Upload Field -->
-                <div class="form-field">
-                    <label for="resume" class="file-label">Upload Resume</label>
-                    <input type="file" id="resume" name="resume" required>
-                </div>
-                <!-- Photo Upload Field -->
-                <div class="form-field">
-                    <label for="photo" class="file-label">Upload Photo</label>
-                    <input type="file" id="photo" name="photo" required>
-                </div>
-                <!-- Buttons -->
-                <div class="flex justify-between items-center mt-6">
-                    <button type="submit" class="form-button">Submit</button>
-                    <button type="reset" class="form-button bg-gray-300 hover:bg-gray-400 text-black">Reset</button>
-                </div>
-            </form>
-            <!-- Sign In Toggle -->
-            <div class="form-toggle">
-                <a onclick="toggleForm()">Already have an account? Sign In</a>
-            </div>
+      <div id="registration-form">
+        <div class="form-header">
+          <h2>Registration Form</h2>
         </div>
-
-        <!-- Sign In Form -->
-        <div id="signin-form" class="hidden">
-            <div class="form-header">
-                <h2>Sign In</h2>
+        <form
+          id="registrationForm"
+          action="#"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your full name"
+            />
+            <div id="nameError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" placeholder="Enter your ID" />
+            <div id="idError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <div id="passwordError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="email">E-Mail ID</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+            <div id="emailError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="age">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Enter your age"
+            />
+            <div id="ageError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label>Gender</label>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                class="mr-2"
+              />
+              <label for="male" class="mr-4">Male</label>
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                class="mr-2"
+              />
+              <label for="female">Female</label>
             </div>
-            <form action="#" method="POST">
-                <!-- Email Field -->
-                <div class="form-field">
-                    <label for="signin-email">E-Mail ID</label>
-                    <input type="email" id="signin-email" name="email" required placeholder="Enter your email">
-                </div>
-                <!-- Password Field -->
-                <div class="form-field">
-                    <label for="signin-password">Password</label>
-                    <input type="password" id="signin-password" name="password" required placeholder="Enter your password">
-                </div>
-                <!-- Sign In Button -->
-                <div class="flex justify-between items-center mt-6">
-                    <button type="submit" class="form-button">Sign In</button>
-                </div>
-            </form>
-            <!-- Sign Up Toggle -->
-            <div class="form-toggle">
-                <a onclick="toggleForm()">Don't have an account? Sign Up</a>
+            <div id="genderError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="address">College Address</label>
+            <textarea
+              id="address"
+              name="address"
+              rows="4"
+              placeholder="Enter your college address"
+            ></textarea>
+            <div id="addressError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="branch">Branch</label>
+            <select id="branch" name="branch">
+              <option value="" disabled selected>Select your branch</option>
+              <option value="CSE">Computer Science Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="ECE">
+                Electronics and Communication Engineering
+              </option>
+              <option value="ME">Mechanical Engineering</option>
+            </select>
+            <div id="branchError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label class="skills-label">Technical Skills</label>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="c"
+                name="skills"
+                value="C"
+                class="mr-2"
+              />
+              <label for="c" class="mr-4">C</label>
+              <input
+                type="checkbox"
+                id="java"
+                name="skills"
+                value="Java"
+                class="mr-2"
+              />
+              <label for="java" class="mr-4">Java</label>
+              <input
+                type="checkbox"
+                id="python"
+                name="skills"
+                value="Python"
+                class="mr-2"
+              />
+              <label for="python" class="mr-4">Python</label>
+              <input
+                type="checkbox"
+                id="jsp"
+                name="skills"
+                value="JSP"
+                class="mr-2"
+              />
+              <label for="jsp">JSP</label>
             </div>
+          </div>
+          <div class="form-field">
+            <label for="resume" class="file-label">Upload Resume</label>
+            <input type="file" id="resume" name="resume" />
+            <div id="resumeError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="photo" class="file-label">Upload Photo</label>
+            <input type="file" id="photo" name="photo" />
+            <div id="photoError" class="error"></div>
+          </div>
+          <div class="flex justify-between items-center mt-6">
+            <button type="submit" class="form-button">Submit</button>
+            <button
+              type="reset"
+              class="form-button bg-gray-300 hover:bg-gray-400 text-black"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+        <div class="form-toggle">
+          <a onclick="toggleForm()">Already have an account? Sign In</a>
         </div>
+      </div>
+      <div id="signin-form" class="hidden">
+        <div class="form-header">
+          <h2>Sign In</h2>
+        </div>
+        <form id="signinForm" action="#" method="POST">
+          <div class="form-field">
+            <label for="signin-email">E-Mail ID</label>
+            <input
+              type="email"
+              id="signin-email"
+              name="email"
+              placeholder="Enter your email"
+            />
+            <div id="signinEmailError" class="error"></div>
+          </div>
+          <div class="form-field">
+            <label for="signin-password">Password</label>
+            <input
+              type="password"
+              id="signin-password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <div id="signinPasswordError" class="error"></div>
+          </div>
+          <div class="flex justify-between items-center mt-6">
+            <button type="submit" class="form-button">Sign In</button>
+          </div>
+        </form>
+        <div class="form-toggle">
+          <a onclick="toggleForm()">Don't have an account? Sign Up</a>
+        </div>
+      </div>
     </div>
-
     <script>
-        function toggleForm() {
-            const registrationForm = document.getElementById('registration-form');
-            const signinForm = document.getElementById('signin-form');
-            registrationForm.classList.toggle('hidden');
-            signinForm.classList.toggle('hidden');
-        }
-    </script>
-</body>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          let valid = true;
+          const name = document.getElementById("name");
+          const id = document.getElementById("id");
+          const password = document.getElementById("password");
+          const email = document.getElementById("email");
+          const age = document.getElementById("age");
+          const gender = document.querySelector('input[name="gender"]:checked');
+          const address = document.getElementById("address");
+          const branch = document.getElementById("branch");
+          const resume = document.getElementById("resume");
+          const photo = document.getElementById("photo");
 
-</html
+          const nameError = document.getElementById("nameError");
+          const idError = document.getElementById("idError");
+          const passwordError = document.getElementById("passwordError");
+          const emailError = document.getElementById("emailError");
+          const ageError = document.getElementById("ageError");
+          const genderError = document.getElementById("genderError");
+          const addressError = document.getElementById("addressError");
+          const branchError = document.getElementById("branchError");
+          const resumeError = document.getElementById("resumeError");
+          const photoError = document.getElementById("photoError");
+
+          nameError.textContent =
+            idError.textContent =
+            passwordError.textContent =
+              "";
+          emailError.textContent =
+            ageError.textContent =
+            genderError.textContent =
+              "";
+          addressError.textContent =
+            branchError.textContent =
+            resumeError.textContent =
+              "";
+          photoError.textContent = "";
+
+          if (!name.value.trim()) {
+            nameError.textContent = "Name is required.";
+            valid = false;
+          }
+          if (!id.value.trim()) {
+            idError.textContent = "ID is required.";
+            valid = false;
+          }
+          if (!password.value.trim()) {
+            passwordError.textContent = "Password is required.";
+            valid = false;
+          } else if (password.value.length < 6) {
+            passwordError.textContent =
+              "Password must be at least 6 characters.";
+            valid = false;
+          }
+          if (!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)) {
+            emailError.textContent = "A valid email is required.";
+            valid = false;
+          }
+          if (!age.value.trim() || age.value <= 0) {
+            ageError.textContent = "Age must be a positive number.";
+            valid = false;
+          }
+          if (!gender) {
+            genderError.textContent = "Gender is required.";
+            valid = false;
+          }
+          if (!address.value.trim()) {
+            addressError.textContent = "Address is required.";
+            valid = false;
+          }
+          if (!branch.value) {
+            branchError.textContent = "Branch selection is required.";
+            valid = false;
+          }
+          if (!resume.files.length) {
+            resumeError.textContent = "Resume upload is required.";
+            valid = false;
+          }
+          if (!photo.files.length) {
+            photoError.textContent = "Photo upload is required.";
+            valid = false;
+          }
+
+          if (!valid) {
+            e.preventDefault();
+          }
+        });
+
+      document
+        .getElementById("signinForm")
+        .addEventListener("submit", function (e) {
+          const email = document.getElementById("signin-email");
+          const password = document.getElementById("signin-password");
+          const signinEmailError = document.getElementById("signinEmailError");
+          const signinPasswordError = document.getElementById(
+            "signinPasswordError"
+          );
+
+          signinEmailError.textContent = signinPasswordError.textContent = "";
+
+          let valid = true;
+
+          if (!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)) {
+            signinEmailError.textContent = "A valid email is required.";
+            valid = false;
+          }
+          if (!password.value.trim()) {
+            signinPasswordError.textContent = "Password is required.";
+            valid = false;
+          }
+
+          if (!valid) {
+            e.preventDefault();
+          }
+        });
+
+      function toggleForm() {
+        const registrationForm = document.getElementById("registration-form");
+        const signinForm = document.getElementById("signin-form");
+        registrationForm.classList.toggle("hidden");
+        signinForm.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
