@@ -15,12 +15,6 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-//routes imports
-
-import userRouter from "./routes/user.routes.js";
-
-
-
 //routes decalration
 import userRouter from "./routes/user.routes.js";
 import postRouter from "./routes/post.routes.js";
