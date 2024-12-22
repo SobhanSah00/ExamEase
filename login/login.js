@@ -1,65 +1,50 @@
-var overlay = document.getElementById("overlay");
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-// Buttons to 'switch' the page
-var openSignUpButton = document.getElementById("slide-left-button");
-var openSignInButton = document.getElementById("slide-right-button");
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-// The sidebars
-var leftText = document.getElementById("sign-in");
-var rightText = document.getElementById("sign-up");
+    try {
+        const response = await fetch('http://localhost:8000/api/v1/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
 
-// The forms
-var accountForm = document.getElementById("sign-in-info")
-var signinForm = document.getElementById("sign-up-info");
+        if (!response.ok) {
+            const errorData = await response.json();
+            document.getElementById('error').innerText = errorData.message || 'Invalid credentials';
+            document.querySelector('.login-container').classList.add('shake');
+            setTimeout(() => {
+                document.querySelector('.login-container').classList.remove('shake');
+            }, 500);
+            return;
+        }
 
-// Open the Sign Up page
-openSignUp = () =>{
-  // Remove classes so that animations can restart on the next 'switch'
-  leftText.classList.remove("overlay-text-left-animation-out");
-  overlay.classList.remove("open-sign-in");
-  rightText.classList.remove("overlay-text-right-animation");
-  // Add classes for animations
-  accountForm.className += " form-left-slide-out"
-  rightText.className += " overlay-text-right-animation-out";
-  overlay.className += " open-sign-up";
-  leftText.className += " overlay-text-left-animation";
-  // hide the sign up form once it is out of view
-  setTimeout(function(){
-    accountForm.classList.remove("form-left-slide-in");
-    accountForm.style.display = "none";
-    accountForm.classList.remove("form-left-slide-out");
-  }, 700);
-  // display the sign in form once the overlay begins moving right
-  setTimeout(function(){
-    signinForm.style.display = "flex";
-    signinForm.classList += " form-right-slide-in";
-  }, 200);
-}
+        const data = await response.json();
+        console.log('Login successful:', data);
+        
+        // Store the token if your API returns one
+        if (data.token) {
+            localStorage.setItem('token', data.token);
+        }
 
-// Open the Sign In page
-openSignIn = () =>{
-  // Remove classes so that animations can restart on the next 'switch'
-  leftText.classList.remove("overlay-text-left-animation");
-  overlay.classList.remove("open-sign-up");
-  rightText.classList.remove("overlay-text-right-animation-out");
-  // Add classes for animations
-  signinForm.classList += " form-right-slide-out";
-  leftText.className += " overlay-text-left-animation-out";
-  overlay.className += " open-sign-in";
-  rightText.className += " overlay-text-right-animation";
-  // hide the sign in form once it is out of view
-  setTimeout(function(){
-    signinForm.classList.remove("form-right-slide-in")
-    signinForm.style.display = "none";
-    signinForm.classList.remove("form-right-slide-out")
-  },700);
-  // display the sign up form once the overlay begins moving left
-  setTimeout(function(){
-    accountForm.style.display = "flex";
-    accountForm.classList += " form-left-slide-in";
-  },200);
-}
+        // Redirect to dashboard or home page
+        window.location.href = '../Home/Homepage.html';
+        
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('error').innerText = 'An error occurred. Please try again.';
+    }
+});
 
-// When a 'switch' button is pressed, switch page
-openSignUpButton.addEventListener("click", openSignUp, false);
-openSignInButton.addEventListener("click", openSignIn, false);
+// Social login buttons (placeholder functionality)
+document.querySelector('.google-btn').addEventListener('click', () => {
+    alert('Google login integration coming soon!');
+});
+
+document.querySelector('.facebook-btn').addEventListener('click', () => {
+    alert('Facebook login integration coming soon!');
+});
