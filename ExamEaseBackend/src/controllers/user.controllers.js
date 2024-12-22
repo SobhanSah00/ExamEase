@@ -4,8 +4,6 @@ import { User } from "../models/user.model.js";
 import { uploadonCloudinary, deleteOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
-// import { response } from "express";
-import mongoose from "mongoose";
 
 const generateAccesstokenAndRefreshTokens = async (userId) => {    
   try {
