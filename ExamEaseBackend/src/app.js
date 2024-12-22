@@ -22,8 +22,12 @@ import userRouter from "./routes/user.routes.js";
 
 
 //routes decalration
-app.use("/api/v1/users", userRouter); 
+import userRouter from "./routes/user.routes.js";
+import postRouter from "./routes/post.routes.js";
 
+// Routes declaration
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/posts", postRouter);
 
 
 export { app };
