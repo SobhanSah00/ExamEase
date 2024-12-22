@@ -4,9 +4,207 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-   
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+            counter-reset: step;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ddd;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #999;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .step.completed {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            outline: none;
+        }
+
+        .form-group input[type="file"] {
+            padding: 8px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-prev {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .btn-next,
+        .btn-submit {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-prev:hover {
+            background: #e9ecef;
+        }
+
+        .btn-next:hover,
+        .btn-submit:hover {
+            background: #5a6fd6;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .form-icon {
+            margin-right: 8px;
+            color: #667eea;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -87,10 +285,102 @@
                 </div>
             </div>
 
-      <div class="error" id="error"></div>
-    </form>
-  </div>
+            <div class="error" id="error"></div>
+        </form>
 
-  <script src="script.js"></script>
+        <div class="login-link">
+            Already have an account? <a href="../login/login.html">Login here</a>
+        </div>
+    </div>
+
+    <script>
+        // Update progress bar
+        function updateProgress(currentStep) {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                if (index < currentStep) {
+                    step.classList.add('completed');
+                } else if (index === currentStep) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        // Show the next page
+        function showPage(currentPageId, nextPageId, step) {
+            document.getElementById(currentPageId).classList.remove("active");
+            document.getElementById(nextPageId).classList.add("active");
+            updateProgress(step);
+        }
+
+        // Show the previous page
+        function showPrevPage(currentPageId, prevPageId, step) {
+            document.getElementById(currentPageId).classList.remove("active");
+            document.getElementById(prevPageId).classList.add("active");
+            updateProgress(step);
+        }
+
+        // Step 1: Next button
+        document.getElementById("next1").addEventListener("click", () => {
+            showPage("page1", "page2", 1);
+        });
+
+        // Step 2: Next button
+        document.getElementById("next2").addEventListener("click", () => {
+            showPage("page2", "page3", 2);
+        });
+
+        // Step 2: Previous button
+        document.getElementById("prev1").addEventListener("click", () => {
+            showPrevPage("page2", "page1", 0);
+        });
+
+        // Step 3: Previous button
+        document.getElementById("prev2").addEventListener("click", () => {
+            showPrevPage("page3", "page2", 1);
+        });
+
+        // Handle form submission
+        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append("fullName", document.getElementById("fullName").value);
+            formData.append("email", document.getElementById("email").value);
+            formData.append("username", document.getElementById("username").value);
+            formData.append("password", document.getElementById("password").value);
+            formData.append("age", document.getElementById("age").value);
+            formData.append("gender", document.getElementById("gender").value);
+            formData.append("address", document.getElementById("address").value);
+            formData.append("skills", document.getElementById("skills").value.split(",").map((s) => s.trim()));
+            formData.append("avatar", document.getElementById("avatar").files[0]);
+            formData.append("resume", document.getElementById("resume").files[0]);
+
+            try {
+                const response = await fetch("http://localhost:8000/api/v1/users/register", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Error response:", errorData);
+                    document.getElementById("error").innerText = errorData.message || "An error occurred.";
+                    return;
+                }
+
+                const result = await response.json();
+                console.log("Success response:", result);
+                alert("Registration successful! Redirecting to login page...");
+                window.location.href = "../login/login.html";
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("error").innerText = "An error occurred. Please try again.";
+            }
+        });
+    </script>
 </body>
 </html>
