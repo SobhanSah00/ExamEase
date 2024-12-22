@@ -39,9 +39,16 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
 
-  if (!Array.isArray(skills) || skills.length === 0 || !skills.every(skill => typeof skill === 'string')) {
+  const skillsArray = Array.isArray(skills) ? skills : typeof skills === 'string' ? skills.split(',').map((s) => s.trim()) : [];
+
+  if (skillsArray.length === 0 || !skillsArray.every(skill => typeof skill === 'string')) {
     throw new ApiError(400, "Skills must be a non-empty array of strings");
   }
+
+
+  // if (!Array.isArray(skills) || skills.length === 0 || !skills.every(skill => typeof skill === 'string')) {
+  //   throw new ApiError(400, "Skills must be a non-empty array of strings");
+  // }
 
   const existingUser = await User.findOne({
     $or: [{ email }, { username }]
