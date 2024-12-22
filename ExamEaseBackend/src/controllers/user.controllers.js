@@ -319,7 +319,7 @@ const updateUserResume = asyncHandler(async (req,res) => {
     throw new ApiError(400, "Avatar file is missing");
   }
 
-  const newResume = await uploadonCloudinary(newAvatarLocalPath);
+  const newResume = await uploadonCloudinary(newResumePath);
 
   if (!newResume.url) {
     throw new ApiError(400, "Error while uploading avatar");
