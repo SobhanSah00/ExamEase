@@ -1,135 +1,3 @@
- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Registration Form</title>
-      <link rel="stylesheet" href="style.css">
-   </head>
-   <body>
-      <div class="container">
-         <header>Registration Form</header>
-         <div class="progress-bar">
-            <div class="step">
-               <p>Basic Info</p>
-               <div class="bullet">
-                  <span>1</span>
-               </div>
-               <div class="check fas fa-check"></div>
-            </div>
-            <div class="step">
-               <p>Contact</p>
-               <div class="bullet">
-                  <span>2</span>
-               </div>
-               <div class="check fas fa-check"></div>
-            </div>
-            <div class="step">
-               <p>Details</p>
-               <div class="bullet">
-                  <span>3</span>
-               </div>
-               <div class="check fas fa-check"></div>
-            </div>
-            <div class="step">
-               <p>Submit</p>
-               <div class="bullet">
-                  <span>4</span>
-               </div>
-               <div class="check fas fa-check"></div>
-            </div>
-         </div>
-         <div class="form-outer">
-            <form action="/submit-form" method="POST" enctype="multipart/form-data">
-               <div class="page slide-page">
-                  <div class="title">Basic Info:</div>
-                  <div class="field">
-                     <div class="label">Name</div>
-                     <input type="text" name="name" placeholder="Enter your name" required>
-                  </div>
-                  <div class="field">
-                     <div class="label">ID</div>
-                     <input type="text" name="id" placeholder="Enter your ID" required>
-                  </div>
-                  <div class="field">
-                     <div class="label">Password</div>
-                     <input type="password" name="password" placeholder="Enter your password" required>
-                  </div>
-                  <div class="field">
-                     <button class="firstNext next" type="button">Next</button>
-                  </div>
-               </div>
-               <div class="page">
-                  <div class="title">Contact Info:</div>
-                  <div class="field">
-                     <div class="label">E-Mail ID</div>
-                     <input type="email" name="email" placeholder="Enter your email" required>
-                  </div>
-                  <div class="field">
-                     <div class="label">Age</div>
-                     <input type="number" name="age" placeholder="Enter your age" required>
-                  </div>
-                  <div class="field">
-                     <div class="label">Gender</div>
-                     <label><input type="radio" name="gender" value="Male" required> Male</label>
-                     <label><input type="radio" name="gender" value="Female"> Female</label>
-                     <label><input type="radio" name="gender" value="Other"> Other</label>
-                  </div>
-                  <div class="field btns">
-                     <button class="prev-1 prev" type="button">Previous</button>
-                     <button class="next-1 next" type="button">Next</button>
-                  </div>
-               </div>
-               <div class="page">
-                  <div class="title">Details:</div>
-                  <div class="field">
-                     <div class="label">College Address</div>
-                     <textarea name="address" rows="3" placeholder="Enter your college address" required></textarea>
-                  </div>
-                  <div class="field">
-                     <div class="label">Branch</div>
-                     <select name="branch" required>
-                        <option value="CSE">Computer Science</option>
-                        <option value="IT">Information Technology</option>
-                        <option value="ECE">Electronics & Communication</option>
-                        <option value="ME">Mechanical Engineering</option>
-                     </select>
-                  </div>
-                  <div class="field">
-                     <div class="label">Upload Resume</div>
-                     <input type="file" name="resume" accept=".pdf" required>
-                  </div>
-                  <div class="field">
-                     <div class="label">Upload Photo</div>
-                     <input type="file" name="photo" required>
-                  </div>
-                  <div class="field">
-                     <div class="label">Technical Skills</div>
-                     <label><input type="checkbox" name="skills" value="Java"> Java</label>
-                     <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
-                     <label><input type="checkbox" name="skills" value="Python"> Python</label>
-                     <label><input type="checkbox" name="skills" value="JSP"> JSP</label>
-                  </div>
-                  <div class="field btns">
-                     <button class="prev-2 prev" type="button">Previous</button>
-                     <button class="next-2 next" type="button">Next</button>
-                  </div>
-               </div>
-               <div class="page">
-                  <div class="title">Submit:</div>
-                  <div class="field btns">
-                     <button class="prev-3 prev" type="button">Previous</button>
-                     <button type="submit" class="submit">Submit</button>
-                     <button type="reset" class="reset">Reset</button>
-                  </div>
-               </div>
-            </form>
-         </div>
-      </div>
-      <script src="script.js"></script>
-   </body>
-</html> 
-
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,6 +148,206 @@
 
   </script>
 </body>
-</html> -->
+</html>
+ -->
 
 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    form > div {
+      margin-bottom: 15px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Register User</h2>
+    <form id="registerForm">
+      <div class="page active" id="page1">
+        <div>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="button" id="next1">Next</button>
+      </div>
+
+      <div class="page" id="page2">
+        <div>
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" required />
+        </div>
+        <div>
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label for="address">Address</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+        <button type="button" id="prev1">Previous</button>
+        <button type="button" id="next2">Next</button>
+      </div>
+
+      <div class="page" id="page3">
+        <div>
+          <label for="skills">Skills (comma-separated)</label>
+          <input type="text" id="skills" name="skills" required />
+        </div>
+        <div>
+          <label for="avatar">Avatar</label>
+          <input type="file" id="avatar" name="avatar" accept="image/*" required />
+        </div>
+        <div>
+          <label for="resume">Resume</label>
+          <input type="file" id="resume" name="resume" accept="application/pdf" required />
+        </div>
+        <button type="button" id="prev2">Previous</button>
+        <button type="submit" id="submitBtn">Submit</button>
+      </div>
+
+      <div class="error" id="error"></div>
+    </form>
+  </div>
+
+  <script>
+    // Show the next page
+    function showPage(currentPageId, nextPageId) {
+      document.getElementById(currentPageId).classList.remove("active");
+      document.getElementById(nextPageId).classList.add("active");
+    }
+
+    // Show the previous page
+    function showPrevPage(currentPageId, prevPageId) {
+      document.getElementById(currentPageId).classList.remove("active");
+      document.getElementById(prevPageId).classList.add("active");
+    }
+
+    // Step 1: Next button
+    document.getElementById("next1").addEventListener("click", () => {
+      showPage("page1", "page2");
+    });
+
+    // Step 2: Next button
+    document.getElementById("next2").addEventListener("click", () => {
+      showPage("page2", "page3");
+    });
+
+    // Step 2: Previous button
+    document.getElementById("prev1").addEventListener("click", () => {
+      showPrevPage("page2", "page1");
+    });
+
+    // Step 3: Previous button
+    document.getElementById("prev2").addEventListener("click", () => {
+      showPrevPage("page3", "page2");
+    });
+
+    // Handle form submission
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault(); // Prevent default form submission behavior
+
+      const formData = new FormData(); // Prepare FormData object
+      formData.append("fullName", document.getElementById("fullName").value);
+      formData.append("email", document.getElementById("email").value);
+      formData.append("username", document.getElementById("username").value);
+      formData.append("password", document.getElementById("password").value);
+      formData.append("age", document.getElementById("age").value);
+      formData.append("gender", document.getElementById("gender").value);
+      formData.append("address", document.getElementById("address").value);
+      formData.append("skills", document.getElementById("skills").value.split(",").map((s) => s.trim()));
+      formData.append("avatar", document.getElementById("avatar").files[0]);
+      formData.append("resume", document.getElementById("resume").files[0]);
+
+      try {
+        const response = await fetch("http://localhost:8000/api/v1/users/register", {
+          method: "POST",
+          body: formData, // Send FormData object
+        });
+
+        // Check response status
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Error response:", errorData);
+          document.getElementById("error").innerText = errorData.message || "An error occurred.";
+          return;
+        }
+
+        // Handle successful response
+        const result = await response.json();
+        console.log("Success response:", result);
+        alert(result.message || "User registered successfully!");
+      } catch (error) {
+        // Handle network or other unexpected errors
+        console.error("Error:", error);
+        document.getElementById("error").innerText = "An error occurred. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
