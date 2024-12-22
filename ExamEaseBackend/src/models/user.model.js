@@ -35,7 +35,7 @@ const userSchema = new Schema(
             required: [true, 'Password is required']
         },
         age : {
-            type: Number,
+            type: String,
             required: true
         },
         gender : {

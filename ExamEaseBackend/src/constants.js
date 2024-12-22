@@ -1,1 +1,1 @@
-export const DB_NAME = "thumbCraft" 
+export const DB_NAME = "ExamEase" 
