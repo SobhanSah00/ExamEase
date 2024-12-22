@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Registration Form</title>
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <div class="container">
+         <header>Registration Form</header>
+         <div class="progress-bar">
+            <div class="step">
+               <p>Basic Info</p>
+               <div class="bullet">
+                  <span>1</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+               <p>Contact</p>
+               <div class="bullet">
+                  <span>2</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+               <p>Details</p>
+               <div class="bullet">
+                  <span>3</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+               <p>Submit</p>
+               <div class="bullet">
+                  <span>4</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+         </div>
+         <div class="form-outer">
+            <form action="/submit-form" method="POST" enctype="multipart/form-data">
+               <div class="page slide-page">
+                  <div class="title">Basic Info:</div>
+                  <div class="field">
+                     <div class="label">Name</div>
+                     <input type="text" name="name" placeholder="Enter your name" required>
+                  </div>
+                  <div class="field">
+                     <div class="label">ID</div>
+                     <input type="text" name="id" placeholder="Enter your ID" required>
+                  </div>
+                  <div class="field">
+                     <div class="label">Password</div>
+                     <input type="password" name="password" placeholder="Enter your password" required>
+                  </div>
+                  <div class="field">
+                     <button class="firstNext next" type="button">Next</button>
+                  </div>
+               </div>
+               <div class="page">
+                  <div class="title">Contact Info:</div>
+                  <div class="field">
+                     <div class="label">E-Mail ID</div>
+                     <input type="email" name="email" placeholder="Enter your email" required>
+                  </div>
+                  <div class="field">
+                     <div class="label">Age</div>
+                     <input type="number" name="age" placeholder="Enter your age" required>
+                  </div>
+                  <div class="field">
+                     <div class="label">Gender</div>
+                     <label><input type="radio" name="gender" value="Male" required> Male</label>
+                     <label><input type="radio" name="gender" value="Female"> Female</label>
+                     <label><input type="radio" name="gender" value="Other"> Other</label>
+                  </div>
+                  <div class="field btns">
+                     <button class="prev-1 prev" type="button">Previous</button>
+                     <button class="next-1 next" type="button">Next</button>
+                  </div>
+               </div>
+               <div class="page">
+                  <div class="title">Details:</div>
+                  <div class="field">
+                     <div class="label">College Address</div>
+                     <textarea name="address" rows="3" placeholder="Enter your college address" required></textarea>
+                  </div>
+                  <div class="field">
+                     <div class="label">Branch</div>
+                     <select name="branch" required>
+                        <option value="CSE">Computer Science</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="ECE">Electronics & Communication</option>
+                        <option value="ME">Mechanical Engineering</option>
+                     </select>
+                  </div>
+                  <div class="field">
+                     <div class="label">Upload Resume</div>
+                     <input type="file" name="resume" accept=".pdf" required>
+                  </div>
+                  <div class="field">
+                     <div class="label">Upload Photo</div>
+                     <input type="file" name="photo" required>
+                  </div>
+                  <div class="field">
+                     <div class="label">Technical Skills</div>
+                     <label><input type="checkbox" name="skills" value="Java"> Java</label>
+                     <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
+                     <label><input type="checkbox" name="skills" value="Python"> Python</label>
+                     <label><input type="checkbox" name="skills" value="JSP"> JSP</label>
+                  </div>
+                  <div class="field btns">
+                     <button class="prev-2 prev" type="button">Previous</button>
+                     <button class="next-2 next" type="button">Next</button>
+                  </div>
+               </div>
+               <div class="page">
+                  <div class="title">Submit:</div>
+                  <div class="field btns">
+                     <button class="prev-3 prev" type="button">Previous</button>
+                     <button type="submit" class="submit">Submit</button>
+                     <button type="reset" class="reset">Reset</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <script src="script.js"></script>
+   </body>
+</html>
