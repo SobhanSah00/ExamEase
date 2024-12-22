@@ -32,15 +32,27 @@ const generateAccesstokenAndRefreshTokens = async (userId) => {
 
 const registerUser = asyncHandler(async (req, res) => { 
   
-  const { fullName, email, username, password } = req.body;
+  const { fullName, email, username, password, age, gender, address, skills } = req.body;
   
 
   if (
-    [fullName, email, username, password].some(
+    [fullName, email, username, password,gender,address,age].some(
       (fields) => fields?.trim() === ""
     )
   ) {
     throw new ApiError(400, "All fields are required");
+  }
+
+  if(!Array.isArray(skills)) {
+    throw new ApiError(400, "Skills must be an array");
+  }
+
+  if(!skills.length() > 0) {
+    throw new ApiError(400, "Skills cannot be empty");
+  }
+
+  if(!skills.every(skill => typeof skill === 'string')) {
+    throw new ApiError(400, "Skills must be an array of strings");
   }
 
   await User.findOne({
@@ -52,26 +64,38 @@ const registerUser = asyncHandler(async (req, res) => {
   });
                  
   const avatarLocalPath = req.file?.path
+  const resumeLocalPath = req.file?.path
 
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar is required");
   }
+  if (!resumeLocalPath) {
+    throw new ApiError(400, "Resume is required");
+  }
 
-  // 5 . upload them to cloudynary
   const avatar = await uploadonCloudinary(avatarLocalPath);
+  const resume = await uploadonCloudinary(resumeLocalPath);
 
   if (!avatar) {
     throw new ApiError(400, "Avatar file is required");
   }
 
-  // 6 . create user object - create entry in db
+  if(!resume) {
+    throw new ApiError(400, "Resume file is required");
+  }
+
   const user = await User.create({
     fullName,
     avatar: avatar.url,
+    resume: resume.url,
     email,
     username: username.toLowerCase(),
     password,
+    age,
+    gender,
+    address,
+    skills,
   });
 
   // 7 . remove password and refresh token field from responce
@@ -314,7 +338,40 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Avatar image updated successfully"));
 });
 
+const updateUserResume = asyncHandler(async (req,res) => {
+  
+  const newResumePath = req.file?.path;
 
+  if (!newResumePath) {
+    throw new ApiError(400, "Avatar file is missing");
+  }
+
+  const newResume = await uploadonCloudinary(newAvatarLocalPath);
+
+  if (!newResume.url) {
+    throw new ApiError(400, "Error while uploading avatar");
+  }
+
+  const user = await User.findById(req.user?._id);
+
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  const previousResumeURL = user.resume;
+
+  if (previousResumeURL) {
+    const publicId = previousResumeURL.split("/").pop().split(".")[0];
+    await deleteOnCloudinary(publicId);
+  }
+
+  user.resume = newResume.url;
+  await user.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "Resume image updated successfully"));
+})
 
 export {
   registerUser,
@@ -324,5 +381,5 @@ export {
   changeCurrentUserPassword,
   updateAccountDetails,
   updateUserAvatar,
- 
+  updateUserResume
 };
