@@ -22,7 +22,7 @@ import repoRouter from "./routes/repo.routes.js";
 
 // Routes declaration
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/posts", postRouter); 
 app.use("/api/v1/repos", repoRouter);
 
 
