@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+    <style>
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .skill-tag {
+            background: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 15px;
+        }
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+            User Profile
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile-general">General Info</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile-additional">Additional Info</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile-skills">Skills</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <!-- General Info -->
+                        <div class="tab-pane fade active show" id="profile-general">
+                            <div class="card-body">
+                                <div class="text-center mb-4">
+                                    <img id="avatar-display" src="/placeholder-avatar.png" class="profile-avatar mb-3">
+                                    <h5 id="fullName-display" class="mb-0">Loading...</h5>
+                                    <p id="email-display" class="text-muted">Loading...</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Username:</strong> <span id="username-display">Loading...</span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Age:</strong> <span id="age-display">Loading...</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Info -->
+                        <div class="tab-pane fade" id="profile-additional">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Gender:</strong> <span id="gender-display">Loading...</span></p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p><strong>Address:</strong></p>
+                                        <p id="address-display" class="text-muted">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p><strong>Resume:</strong></p>
+                                    <p id="resume-display" class="text-muted">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills -->
+                        <div class="tab-pane fade" id="profile-skills">
+                            <div class="card-body">
+                                <h6 class="mb-4">Professional Skills</h6>
+                                <div class="skills-container" id="skills-container">
+                                    <!-- Skills will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Fetch and display profile data
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/users/getUserData');
+                const profileData = await response.json();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error fetching profile:', error);
+                alert('Failed to load profile data');
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+
+        function displayProfile(data) {
+            // Display general info
+            document.getElementById('fullName-display').textContent = data.fullName || 'N/A';
+            document.getElementById('email-display').textContent = data.email || 'N/A';
+            document.getElementById('username-display').textContent = data.username || 'N/A';
+            document.getElementById('age-display').textContent = data.age || 'N/A';
+            
+            // Display additional info
+            document.getElementById('gender-display').textContent = data.gender || 'N/A';
+            document.getElementById('address-display').textContent = data.address || 'N/A';
+            
+            // Display avatar if available
+            if (data.avatar) {
+                document.getElementById('avatar-display').src = data.avatar;
+            }
+            
+            // Display resume info if available
+            document.getElementById('resume-display').textContent = 
+                data.resume ? 'Resume uploaded' : 'No resume available';
+            
+            // Display skills
+            const skillsContainer = document.getElementById('skills-container');
+            skillsContainer.innerHTML = '';
+            if (data.skills && data.skills.length > 0) {
+                data.skills.forEach(skill => {
+                    const skillTag = document.createElement('div');
+                    skillTag.className = 'skill-tag';
+                    skillTag.textContent = skill;
+                    skillsContainer.appendChild(skillTag);
+                });
+            } else {
+                skillsContainer.innerHTML = '<p class="text-muted">No skills listed</p>';
+            }
+        }
+    </script>
+</body>
+</html>

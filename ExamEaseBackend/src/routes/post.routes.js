@@ -10,9 +10,9 @@ import {
 const router = Router();
 
 // Secured routes for posts
-router.route("/").get(verifyJwt, viewPosts); // View all posts
-router.route("/").post(verifyJwt, createPost); // Create a new post
-router.route("/:id").patch(verifyJwt, editPost); // Edit a post
-router.route("/:id").delete(verifyJwt, deletePost); // Delete a post
+router.route("/view-posts").get(verifyJwt, viewPosts); // View all posts
+router.route("/create-post").post(verifyJwt, createPost); // Create a new post
+router.route("/edit-post/:id").patch(verifyJwt, editPost); // Edit a post
+router.route("/delete-post/:id").delete(verifyJwt, deletePost); // Delete a post
 
 export default router;

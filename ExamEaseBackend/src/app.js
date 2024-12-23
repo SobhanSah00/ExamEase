@@ -18,10 +18,12 @@ app.use(cookieParser());
 //routes decalration
 import userRouter from "./routes/user.routes.js";
 import postRouter from "./routes/post.routes.js";
+import repoRouter from "./routes/repo.routes.js";
 
 // Routes declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/repos", repoRouter);
 
 
 export { app };
